@@ -1,8 +1,8 @@
 ### `src/stores/auth.store.ts`
 
 ```ts
-import { create } from 'zustand';
-import { api } from '../services/api';
+import { create } from "zustand";
+import { api } from "../services/api";
 
 interface User {
   id: string;
@@ -26,7 +26,7 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   checkAuth: async () => {
     try {
-      const response = await api.get('/api/session');
+      const response = await api.get("/api/session");
       if (response.data?.user) {
         set({ user: response.data.user, isAuthenticated: true });
       } else {
@@ -39,7 +39,7 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   logout: async () => {
     try {
-      await api.post('/api/session/logout');
+      await api.post("/api/session/logout");
     } finally {
       set({ user: null, isAuthenticated: false });
     }
@@ -50,9 +50,9 @@ export const useAuthStore = create<AuthState>((set) => ({
 ### `src/stores/movie.store.ts`
 
 ```ts
-import { create } from 'zustand';
+import { create } from "zustand";
 
-export type ViewMode = 'grid' | 'list';
+export type ViewMode = "grid" | "list";
 
 interface MovieFilterState {
   searchQuery: string;
@@ -67,10 +67,10 @@ interface MovieFilterState {
 }
 
 export const useMovieStore = create<MovieFilterState>((set) => ({
-  searchQuery: '',
+  searchQuery: "",
   selectedGenre: null,
   selectedFormat: null,
-  viewMode: 'grid',
+  viewMode: "grid",
 
   setSearchQuery: (searchQuery) => set({ searchQuery }),
   setSelectedGenre: (selectedGenre) => set({ selectedGenre }),
@@ -79,7 +79,7 @@ export const useMovieStore = create<MovieFilterState>((set) => ({
 
   resetFilters: () =>
     set({
-      searchQuery: '',
+      searchQuery: "",
       selectedGenre: null,
       selectedFormat: null,
     }),

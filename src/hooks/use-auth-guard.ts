@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { useRouter, useSegments } from 'expo-router';
-import { useAuthStore } from '../stores/auth.store';
+import { useRouter, useSegments } from "expo-router";
+import { useEffect, useState } from "react";
+import { useAuthStore } from "../stores/auth.store";
 
 export const useAuthGuard = () => {
   const { isAuthenticated, checkAuth } = useAuthStore();
@@ -20,10 +20,10 @@ export const useAuthGuard = () => {
   useEffect(() => {
     if (isLoading) return;
 
-    const inAppGroup = segments[0] === '(app)';
+    const inAppGroup = segments[0] === "(app)";
 
     if (!isAuthenticated && inAppGroup) {
-      router.replace('/(auth)/login');
+      router.replace("/(auth)/login");
     }
   }, [isAuthenticated, isLoading, segments]);
 

@@ -14,6 +14,7 @@ import { LoginFormData, loginSchema } from "../../schemas/auth.schema";
 export const LoginScreen: React.FC = () => {
   const router = useRouter();
   const loginMutation = useLoginMutation();
+  console.log("🚀 ~ LoginScreen ~ loginMutation:", loginMutation);
 
   const {
     control,

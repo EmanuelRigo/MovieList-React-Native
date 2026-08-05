@@ -1,5 +1,5 @@
-import { create } from 'zustand';
-import { api } from '../services/api';
+import { create } from "zustand";
+import { api } from "../services/api";
 
 interface User {
   id: string;
@@ -23,9 +23,23 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   checkAuth: async () => {
     try {
-      const response = await api.get('/api/session');
-      if (response.data?.user) {
-        set({ user: response.data.user, isAuthenticated: true });
+      // Equivalente a fetch con { method: "POST", credentials: "include",
+      // headers: { "Content-Type": "application/json" }, body: JSON.stringify({}) }.
+      // El cliente axios ya define withCredentials:true y Content-Type,
+      // y api.post fuerza el método POST. Se envía {} como body explícito.
+      const response = await api.post("/api/sessions/online", {});
+      // El backend devuelve el usuario en data.response
+      // (no en data.user). Campos: { user_id, email, firstName, username, role, mode, isOnline }.
+      const u = response.data?.response;
+      if (u?.user_id) {
+        set({
+          user: {
+            id: u.user_id,
+            email: u.email,
+            name: u.firstName ?? u.username,
+          },
+          isAuthenticated: true,
+        });
       } else {
         set({ user: null, isAuthenticated: false });
       }
@@ -36,7 +50,7 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   logout: async () => {
     try {
-      await api.post('/api/session/logout');
+      await api.post("/api/session/logout");
     } finally {
       set({ user: null, isAuthenticated: false });
     }
