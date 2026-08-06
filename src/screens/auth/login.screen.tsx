@@ -44,8 +44,8 @@ export const LoginScreen: React.FC = () => {
 
   return (
     <Screen className="justify-center">
-      <Section title="Iniciar Sesión">
-        <Text className="text-slate-400 text-sm mb-4">
+      <Section title="Iniciar Sesión" className="bg-background-elevated">
+        <Text className="text-text-secondary text-sm mb-5">
           Ingresa tus credenciales para acceder a tu colección de películas.
         </Text>
 
@@ -58,6 +58,7 @@ export const LoginScreen: React.FC = () => {
               placeholder="tu@email.com"
               keyboardType="email-address"
               autoCapitalize="none"
+              autoComplete="email"
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
@@ -85,16 +86,17 @@ export const LoginScreen: React.FC = () => {
         <View className="mt-2">
           <AppButton
             title="Ingresar"
+            variant="primary"
             onPress={handleSubmit(onSubmit)}
             isLoading={loginMutation.isPending}
           />
         </View>
 
-        <View className="mt-4 items-center">
-          <Text className="text-slate-400 text-sm">
+        <View className="mt-5 items-center">
+          <Text className="text-text-secondary text-sm">
             ¿No tienes cuenta?{" "}
             <Text
-              className="text-main font-bold"
+              className="text-accent-hover font-bold"
               onPress={() => router.push("/(auth)/register" as any)}
             >
               Regístrate aquí

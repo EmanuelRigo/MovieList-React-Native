@@ -1,0 +1,14 @@
+# Cursor Rules — movielist-rnative
+
+## Project Context
+React Native + Expo SDK 57 app (migrated from Next.js).
+
+## Always Read First
+- Expo SDK 57 docs at https://docs.expo.dev/versions/v57.0.0/
+
+## Tech Stack
+- Expo Router, NativeWind v4, TanStack Query, Zustand, Axios, React Hook Form + Zod
+
+## Available Skills (.claude/skills/)
+api-service, expo-router-navigation, forms-zod, migration-nextjs-to-rn,
+nativewind-ui, screen-generator, tanstack-query, zustand-store

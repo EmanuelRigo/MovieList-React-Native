@@ -19,20 +19,21 @@ export const AppButton: React.FC<AppButtonProps> = ({
   const getVariantStyles = () => {
     switch (variant) {
       case 'secondary':
-        return 'bg-secondary border-secondary';
+        return 'bg-surface-active border-border-strong';
       case 'outline':
-        return 'bg-transparent border-main border-2';
+        return 'bg-transparent border-accent-primary border-2';
       case 'danger':
         return 'bg-red-600 border-red-600';
       case 'primary':
       default:
-        return 'bg-main border-main';
+        return 'bg-accent-primary border-accent-primary shadow-accent';
     }
   };
 
   const getTextStyles = () => {
-    if (variant === 'outline') return 'text-main font-bold';
-    return 'text-white font-bold';
+    if (variant === 'outline') return 'text-accent-primary font-bold';
+    if (variant === 'secondary') return 'text-text-primary font-bold';
+    return 'text-background-primary font-bold';
   };
 
   return (
@@ -44,7 +45,7 @@ export const AppButton: React.FC<AppButtonProps> = ({
       {...props}
     >
       {isLoading ? (
-        <ActivityIndicator color="#ffffff" />
+        <ActivityIndicator color="#0a0a0a" />
       ) : (
         <Text className={`text-base ${getTextStyles()}`}>{title}</Text>
       )}

@@ -9,9 +9,12 @@ export interface SectionProps extends ViewProps {
 
 export const Section: React.FC<SectionProps> = ({ title, children, className = '', ...props }) => {
   return (
-    <View className={`my-3 bg-surface p-4 rounded-2xl ${className}`} {...props}>
+    <View
+      className={`my-3 bg-background-elevated border border-border-subtle p-4 rounded-2xl ${className}`}
+      {...props}
+    >
       {title && (
-        <Text className="text-lg font-bold text-white mb-3">{title}</Text>
+        <Text className="text-xl font-bold text-text-primary mb-3">{title}</Text>
       )}
       {children}
     </View>

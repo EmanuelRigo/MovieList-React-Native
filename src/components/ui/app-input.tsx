@@ -18,12 +18,12 @@ export const AppInput: React.FC<AppInputProps> = ({
   return (
     <View className={`w-full mb-4 ${containerClassName}`}>
       {label && (
-        <Text className="text-white font-semibold text-sm mb-1.5">{label}</Text>
+        <Text className="text-text-secondary font-semibold text-sm mb-1.5">{label}</Text>
       )}
       <TextInput
-        placeholderTextColor="#94A3B8"
-        className={`w-full bg-surface text-white px-4 py-3 rounded-xl border ${
-          error ? 'border-red-500' : 'border-main/30'
+        placeholderTextColor="#6b7280"
+        className={`w-full bg-surface-primary text-text-primary px-4 py-3 rounded-xl border ${
+          error ? 'border-red-500' : 'border-border-subtle focus:border-border-strong'
         } ${className}`}
         {...props}
       />
