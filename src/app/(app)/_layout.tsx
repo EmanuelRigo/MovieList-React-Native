@@ -1,23 +1,14 @@
-import { AppButton } from "@/components/ui/app-button";
-import { Screen } from "@/components/ui/screen";
-import { useAuthGuard } from "@/hooks/use-auth-guard";
-import { useAuthStore } from "@/stores/auth.store";
-import { Text } from "react-native";
+import { Stack } from "expo-router";
 
+/**
+ * Layout del grupo `(app)` — rutas autenticadas.
+ * El guardián de auth vive en el root layout para que el store esté
+ * hidratado antes de evaluar rutas; acá solo declaramos las pantallas.
+ */
 export default function AppLayout() {
-  const { isLoading } = useAuthGuard();
-  const logout = useAuthStore((state) => state.logout);
-
-  if (isLoading) {
-    return null;
-  }
-
   return (
-    <Screen className="justify-center items-center">
-      <Text className="text-2xl font-bold text-main mb-4">
-        ¡Bienvenido a MovieList!
-      </Text>
-      <AppButton title="Cerrar sesión" variant="outline" onPress={logout} />
-    </Screen>
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="index" />
+    </Stack>
   );
 }
